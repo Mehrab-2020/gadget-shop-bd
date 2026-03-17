@@ -1,262 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gadget Shop BD - Premium Tech Accessories</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tech Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: #f5f7fa;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo { font-weight: 600; font-size: 20px; }
+
+.cart {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.hero h1 { font-size: 36px; }
+
+.cta {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 40px;
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.price {
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+button.add {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #111;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cart-panel {
+  position: fixed;
+  right: -320px;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  background: white;
+  box-shadow: -5px 0 20px rgba(0,0,0,0.2);
+  padding: 20px;
+  transition: 0.3s;
+}
+
+.cart-panel.active {
+  right: 0;
+}
+
+.cart-item {
+  margin-bottom: 10px;
+}
+
+</style>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-content">
-                <div class="logo">
-                    <span class="logo-icon">⚡</span>
-                    <span class="logo-text">Gadget Shop BD</span>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#home" class="nav-link active">Home</a></li>
-                    <li><a href="#products" class="nav-link">Products</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-                <button class="cart-btn" id="cartBtn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="9" cy="21" r="1"></circle>
-                        <circle cx="20" cy="21" r="1"></circle>
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                    </svg>
-                    <span class="cart-count" id="cartCount">0</span>
-                </button>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-bg"></div>
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="title-line">Premium Tech</span>
-                    <span class="title-line">Accessories</span>
-                </h1>
-                <p class="hero-subtitle">Chargers • TWS Earbuds • Wired Earphones</p>
-                <a href="#products" class="cta-btn">
-                    Explore Collection
-                    <span class="btn-arrow">→</span>
-                </a>
-            </div>
-            <div class="hero-visual">
-                <div class="floating-card card-1">
-                    <div class="card-icon">🎧</div>
-                    <div class="card-text">TWS</div>
-                </div>
-                <div class="floating-card card-2">
-                    <div class="card-icon">⚡</div>
-                    <div class="card-text">Fast Charge</div>
-                </div>
-                <div class="floating-card card-3">
-                    <div class="card-icon">🎵</div>
-                    <div class="card-text">Audio</div>
-                </div>
-            </div>
-        </div>
-    </section>
+<header>
+  <div class="logo">TechStore</div>
+  <div class="cart" onclick="toggleCart()">🛒 Cart (<span id="count">0</span>)</div>
+</header>
 
-    <!-- Products Section -->
-    <section class="products" id="products">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Featured Products</h2>
-                <div class="category-filter">
-                    <button class="filter-btn active" data-category="all">All</button>
-                    <button class="filter-btn" data-category="chargers">Chargers</button>
-                    <button class="filter-btn" data-category="tws">TWS</button>
-                    <button class="filter-btn" data-category="earphones">Earphones</button>
-                </div>
-            </div>
+<section class="hero">
+  <h1>Best Tech Gadgets in Bangladesh</h1>
+  <p>Premium quality at affordable prices</p>
+  <button class="cta">Shop Now</button>
+</section>
 
-            <div class="products-grid" id="productsGrid">
-                <!-- Products will be dynamically loaded here -->
-            </div>
-        </div>
-    </section>
+<section class="products" id="productList"></section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2 class="section-title">About Gadget Shop BD</h2>
-                    <p>We are Bangladesh's premier destination for high-quality tech accessories. From fast chargers to premium TWS earbuds and crystal-clear wired earphones, we curate only the best products for tech enthusiasts.</p>
-                    <p>Our mission is to bring cutting-edge technology and reliable accessories to your fingertips, ensuring quality, affordability, and exceptional customer service.</p>
-                    <div class="features">
-                        <div class="feature">
-                            <div class="feature-icon">✓</div>
-                            <div class="feature-text">
-                                <h3>Authentic Products</h3>
-                                <p>100% genuine accessories</p>
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-icon">✓</div>
-                            <div class="feature-text">
-                                <h3>Fast Delivery</h3>
-                                <p>Quick shipping across BD</p>
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-icon">✓</div>
-                            <div class="feature-text">
-                                <h3>Quality Assured</h3>
-                                <p>Warranty on all products</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-visual">
-                    <div class="stats-card">
-                        <div class="stat">
-                            <div class="stat-number">500+</div>
-                            <div class="stat-label">Happy Customers</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">50+</div>
-                            <div class="stat-label">Products</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">100%</div>
-                            <div class="stat-label">Satisfaction</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="cart-panel" id="cartPanel">
+  <h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  <h3>Total: ৳<span id="total">0</span></h3>
+</div>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h2 class="section-title">Get In Touch</h2>
-                    <p>Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">📍</div>
-                            <div>
-                                <h4>Location</h4>
-                                <p>Chattogram, Bangladesh</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">📧</div>
-                            <div>
-                                <h4>Email</h4>
-                                <p>info@gadgetshopbd.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">📱</div>
-                            <div>
-                                <h4>Phone</h4>
-                                <p>+880 1XXX-XXXXXX</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <input type="text" id="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" id="phone" placeholder="Phone Number">
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">
-                        Send Message
-                        <span class="btn-arrow">→</span>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
+<script>
+const products = [
+  {id:1, name:"Anker Soundcore Select 4 Go Speaker", price:2200, img:"/mnt/data/Anker-Soundcore-Select-4-Go-Bluetooth-Speaker-1.webp"},
+  {id:2, name:"Anker 20W USB-C Charger", price:900, img:"/mnt/data/zolo-20w-type-c-black-500x500.webp"},
+  {id:3, name:"Oraimo AirBuds 4 ENC", price:1800, img:"/mnt/data/oraimo-AirBuds-4-ENC-True-Wireless-Earbuds.webp"},
+  {id:4, name:"Hoco DES56 Wireless Earbuds", price:1600, img:"/mnt/data/Hoco-DES56-Wireless-Bluetooth-Earbuds.webp"}
+];
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo">
-                        <span class="logo-icon">⚡</span>
-                        <span class="logo-text">Gadget Shop BD</span>
-                    </div>
-                    <p>Your trusted source for premium tech accessories in Bangladesh.</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Quick Links</h4>
-                        <ul>
-                            <li><a href="#home">Home</a></li>
-                            <li><a href="#products">Products</a></li>
-                            <li><a href="#about">About Us</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Categories</h4>
-                        <ul>
-                            <li><a href="#products">Chargers</a></li>
-                            <li><a href="#products">TWS Earbuds</a></li>
-                            <li><a href="#products">Wired Earphones</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Follow Us</h4>
-                        <div class="social-links">
-                            <a href="#" class="social-link">Facebook</a>
-                            <a href="#" class="social-link">Instagram</a>
-                            <a href="#" class="social-link">WhatsApp</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Gadget Shop BD. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    <!-- Shopping Cart Modal -->
-    <div class="cart-modal" id="cartModal">
-        <div class="cart-modal-content">
-            <div class="cart-header">
-                <h3>Shopping Cart</h3>
-                <button class="close-cart" id="closeCart">&times;</button>
-            </div>
-            <div class="cart-items" id="cartItems">
-                <p class="empty-cart">Your cart is empty</p>
-            </div>
-            <div class="cart-footer">
-                <div class="cart-total">
-                    <span>Total:</span>
-                    <span class="total-amount" id="totalAmount">৳0</span>
-                </div>
-                <button class="checkout-btn">Proceed to Checkout</button>
-            </div>
-        </div>
-    </div>
+function renderProducts() {
+  const list = document.getElementById("productList");
+  list.innerHTML = "";
 
-    <script src="script.js"></script>
+  products.forEach(p => {
+    list.innerHTML += `
+      <div class="card">
+        <img src="${p.img}">
+        <h3>${p.name}</h3>
+        <div class="price">৳${p.price}</div>
+        <button class="add" onclick="addToCart(${p.id})">Add to Cart</button>
+      </div>`;
+  });
+}
+
+function addToCart(id) {
+  const item = products.find(p => p.id === id);
+  cart.push(item);
+  updateCart();
+}
+
+function updateCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  document.getElementById("count").innerText = cart.length;
+
+  const cartItems = document.getElementById("cartItems");
+  cartItems.innerHTML = "";
+
+  let total = 0;
+
+  cart.forEach(item => {
+    total += item.price;
+    cartItems.innerHTML += `<div class="cart-item">${item.name} - ৳${item.price}</div>`;
+  });
+
+  document.getElementById("total").innerText = total;
+}
+
+function toggleCart() {
+  document.getElementById("cartPanel").classList.toggle("active");
+}
+
+renderProducts();
+updateCart();
+</script>
+
 </body>
 </html>
