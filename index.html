@@ -1,66 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tech Store</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gadget Shop BD - Premium Tech Accessories</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">Gadget Shop BD</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#products" class="nav-link">Products</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <button class="cart-btn" id="cartBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
 
-<style>
-body {
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  background: #f5f7fa;
-}
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Premium Tech Accessories</h1>
+                <p class="hero-subtitle">High-quality Gadgets delivered across Bangladesh.</p>
+                <a href="#products" class="cta-btn">Shop Now</a>
+            </div>
+        </div>
+    </section>
 
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 40px;
-  background: white;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Our Collection</h2>
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
 
-.logo { font-weight: 600; font-size: 20px; }
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-content">
+            <div class="cart-header">
+                <h3>Your Cart</h3>
+                <button class="close-cart" id="closeCart">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems"></div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span class="total-amount" id="totalAmount">৳0</span>
+                </div>
+                <button class="whatsapp-btn" id="whatsappBtn">Order via WhatsApp 💬</button>
+            </div>
+        </div>
+    </div>
 
-.cart {
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.hero {
-  text-align: center;
-  padding: 60px 20px;
-}
-
-.hero h1 { font-size: 36px; }
-
-.cta {
-  margin-top: 20px;
-  padding: 12px 25px;
-  background: black;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  padding: 40px;
-}
-
-.card {
-  background: white;
-  border-radius: 16px;
-  padding: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  transition: 0.3s;
-}
-
-.card:hover {
+    <script src="script.js"></script>
+</body>
+</html>.card:hover {
   transform: translateY(-5px);
 }
 
